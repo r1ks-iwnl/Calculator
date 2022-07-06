@@ -13,6 +13,28 @@ html, body {
 	text-align: center;
 }
 
+#display {
+	height:50px;
+	width:300px;
+	font-size: 2.5rem;
+	background-color: #202340;
+	margin: auto;
+}
+
+button {
+	border:1px outset #0f1126;
+	color:white;
+	font-size: 2.8rem;
+	background-color: #202340;
+	height:75px;
+	width:75px;
+	cursor:pointer;
+}
+ 
+button:hover {
+	background-color: #0f1126;
+}
+
 body {
 	font-size: 1.4rem;
 	text-rendering: optimizeLegibility;
