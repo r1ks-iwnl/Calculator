@@ -1,11 +1,11 @@
-let buttons = document.getElementsByTagName("button");
 let display = document.getElementById("display");
-//buttons need an identifier
-for (var i = 0 ; i < buttons.length; i++) {
-	buttons[i].addEventListener("click", addNumber);
+let button = [];
+
+for (let i = 1; i <= 9; i++) {
+	button[i] = document.getElementById([i]);
+	button[i].addEventListener("click", addNumber(i), console.log(i)); //clicking unresponsive
 }
 
-function addNumber(){
-	display = i++;
-	console.log(display);
+function addNumber(number){
+	display.innerHTML = number;
 }
