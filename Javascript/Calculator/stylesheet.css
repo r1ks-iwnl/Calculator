@@ -10,7 +10,15 @@ html, body {
 }
 
 .main {
+	position: relative;
 	text-align: center;
+}
+
+.column4 {
+	position: absolute;
+	rotate: 90deg;	/*horrible*/
+	right: 350px;
+	top: 211px;
 }
 
 #display {
