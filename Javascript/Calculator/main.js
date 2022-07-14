@@ -5,8 +5,9 @@ document.getElementById("plus").addEventListener("click", function(){addNumber("
 document.getElementById("minus").addEventListener("click", function(){addNumber("-");});
 document.getElementById("divide").addEventListener("click", function(){addNumber("/");});
 document.getElementById("multiply").addEventListener("click", function(){addNumber("*");});
+document.getElementById("equal").addEventListener("click", function(){calc(display.innerHTML);});
 
-for (let i = 1; i <= 9; i++) {
+for (let i = 0; i <= 9; i++) {
 	button[i] = document.getElementById([i]);
 	button[i].addEventListener("click", function(){
 		addNumber(i);
@@ -15,4 +16,10 @@ for (let i = 1; i <= 9; i++) {
 
 function addNumber(number){
 	display.innerHTML += number;
+}
+
+function calc(expression){
+	let result = eval(expression); //Replace eval()
+	console.log(result);
+	display.innerHTML = result;
 }
