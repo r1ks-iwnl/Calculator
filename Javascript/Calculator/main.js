@@ -16,15 +16,20 @@ for (let i = 0; i <= 9; i++) {
 }
 
 function addNumber(number){
+	if (!isNaN(number)) { //Doesn't allow any initial input
+		return;
+	}
 	display.innerHTML += number;
 }
 
-function delNumber(number){ //not doing anything
-	number.toString();
-	console.log(number);
-	number.slice(-1);
+function delNumber(number){
+	number = number.toString();
+	if (number.length == 1) {
+		display.innerHTML = 0;
+		return;
+	}
+	number = number.slice(0, -1);
 	display.innerHTML = number;
-	console.log(display.innerHTML);
 }
 
 function calc(expression){
