@@ -11,13 +11,16 @@ document.getElementById("equal").addEventListener("click", function(){calc(displ
 for (let i = 0; i <= 9; i++) {
 	button[i] = document.getElementById([i]);
 	button[i].addEventListener("click", function(){
-		addNumber(i);
+		addNumber(i, true);
 	});
 }
 
-function addNumber(number){
-	if (!isNaN(number)) { //Doesn't allow any initial input
+function addNumber(number, isNumber){
+	if (number.length < 1 && !isNumber) { //check not doing anything
 		return;
+	}
+	if (display.innerHTML == 0) {
+		display.innerHTML = null;
 	}
 	display.innerHTML += number;
 }
