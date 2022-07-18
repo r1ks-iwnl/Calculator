@@ -17,7 +17,7 @@ for (let i = 0; i <= 9; i++) {
 
 function addNumber(number){
 	console.log(display.innerHTML.length);
-	if (isNaN(number) && display.innerHTML.length == 1){
+	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0){
 		return;
 	}
 	if (display.innerHTML == 0) {
