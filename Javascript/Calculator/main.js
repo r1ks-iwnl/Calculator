@@ -18,7 +18,7 @@ for (let i = 0; i <= 9; i++) {
 
 function addNumber(number){
 	console.log(prevNum);
-	if (isNaN(prevNum)) {
+	if (isNaN(prevNum) && prevNum == number) { //only prevents duping 1 type of operator
 		return;
 	}
 	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0){
