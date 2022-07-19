@@ -1,5 +1,6 @@
 let display = document.getElementById("display");
 let button = [];
+let prevNum;
 //Could be better
 document.getElementById("delete").addEventListener("click", function(){delNumber(display.innerHTML);});
 document.getElementById("plus").addEventListener("click", function(){addNumber("+");});
@@ -16,13 +17,18 @@ for (let i = 0; i <= 9; i++) {
 }
 
 function addNumber(number){
-	console.log(display.innerHTML.length);
+	console.log(prevNum);
+	if (isNaN(prevNum)) {
+		return;
+	}
 	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0){
 		return;
 	}
 	if (display.innerHTML == 0) {
 		display.innerHTML = null;
 	}
+	prevNum = number;
+	console.log(prevNum);
 	display.innerHTML += number;
 }
 
