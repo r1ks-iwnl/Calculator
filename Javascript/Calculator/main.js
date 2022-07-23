@@ -7,6 +7,7 @@ document.getElementById("plus").addEventListener("click", function(){addNumber("
 document.getElementById("minus").addEventListener("click", function(){addNumber("-");});
 document.getElementById("divide").addEventListener("click", function(){addNumber("/");});
 document.getElementById("multiply").addEventListener("click", function(){addNumber("*");});
+document.getElementById("dot").addEventListener("click", function(){addNumber(".");});
 document.getElementById("equal").addEventListener("click", function(){calc(display.innerHTML);});
 
 for (let i = 0; i <= 9; i++) {
@@ -26,13 +27,15 @@ function addNumber(number){
 		return;
 	} else 	if (isNaN(prevNum) && number == "/") {
 		return;
-	}
-	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0){
+	} else 	if (isNaN(prevNum) && number == ".") {
 		return;
 	}
-	if (display.innerHTML == 0) {
-		display.innerHTML = null;
+	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0 && number != "."){
+		return;
 	}
+	//if (display.innerHTML == 0 && number != ".") {
+	//	display.innerHTML = 0;
+	//}
 	prevNum = number;
 	console.log(prevNum);
 	display.innerHTML += number;
@@ -40,10 +43,10 @@ function addNumber(number){
 
 function delNumber(number){
 	number = number.toString();
-	if (number.length == 1) {
-		display.innerHTML = 0;
-		return;
-	}
+	//if (number.length == 1) {
+	//	display.innerHTML = 0;
+	//	return;
+	//}
 	number = number.slice(0, -1);
 	display.innerHTML = number;
 }
