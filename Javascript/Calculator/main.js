@@ -33,9 +33,6 @@ function addNumber(number){
 	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0 && number != "."){
 		return;
 	}
-	//if (display.innerHTML == 0 && number != ".") {
-	//	display.innerHTML = 0;
-	//}
 	prevNum = number;
 	console.log(prevNum);
 	display.innerHTML += number;
@@ -43,10 +40,6 @@ function addNumber(number){
 
 function delNumber(number){
 	number = number.toString();
-	//if (number.length == 1) {
-	//	display.innerHTML = 0;
-	//	return;
-	//}
 	number = number.slice(0, -1);
 	display.innerHTML = number;
 }
