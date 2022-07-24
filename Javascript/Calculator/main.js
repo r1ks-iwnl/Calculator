@@ -3,6 +3,7 @@ let button = [];
 let prevNum;
 //Could be better
 document.getElementById("delete").addEventListener("click", function(){delNumber(display.innerHTML);});
+document.getElementById("deleteall").addEventListener("click", function(){delNumber(display.innerHTML, true);});
 document.getElementById("plus").addEventListener("click", function(){addNumber("+");});
 document.getElementById("minus").addEventListener("click", function(){addNumber("-");});
 document.getElementById("divide").addEventListener("click", function(){addNumber("/");});
@@ -30,7 +31,7 @@ function addNumber(number){
 	} else 	if (isNaN(prevNum) && number == ".") {
 		return;
 	}
-	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0 && number != "."){
+	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0){
 		return;
 	}
 	prevNum = number;
@@ -38,13 +39,21 @@ function addNumber(number){
 	display.innerHTML += number;
 }
 
-function delNumber(number){
+function delNumber(number, deleteall){
+	if(deleteall){
+		display.innerHTML = "";
+		return;
+	}
 	number = number.toString();
 	number = number.slice(0, -1);
 	display.innerHTML = number;
 }
 
 function calc(expression){
+	if(expression == ""){
+		console.log("expression is empty");
+		return;
+	}
 	let result = eval(expression); //Replace eval()
 	console.log(result);
 	display.innerHTML = result;
