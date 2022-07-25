@@ -9,6 +9,7 @@ document.getElementById("minus").addEventListener("click", function(){addNumber(
 document.getElementById("divide").addEventListener("click", function(){addNumber("/");});
 document.getElementById("multiply").addEventListener("click", function(){addNumber("*");});
 document.getElementById("dot").addEventListener("click", function(){addNumber(".");});
+document.getElementById("power").addEventListener("click", function(){addNumber("**");});
 document.getElementById("equal").addEventListener("click", function(){calc(display.innerHTML);});
 
 for (let i = 0; i <= 9; i++) {
