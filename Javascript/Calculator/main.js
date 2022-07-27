@@ -31,6 +31,8 @@ function addNumber(number){
 		return;
 	} else 	if (isNaN(prevNum) && number == ".") {
 		return;
+	} else 	if (isNaN(prevNum) && number == "**") {
+		return;
 	}
 	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0){
 		return;
