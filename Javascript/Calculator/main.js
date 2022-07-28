@@ -1,7 +1,11 @@
+var allowedKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Backspace", "+", "-",
+	"*", "/", "=", "."];
+
 let display = document.getElementById("display");
 let button = [];
 let prevNum;
 //Could be better
+//I'm changing this trust me
 document.getElementById("delete").addEventListener("click", function(){delNumber(display.innerHTML);});
 document.getElementById("deleteall").addEventListener("click", function(){delNumber(display.innerHTML, true);});
 document.getElementById("plus").addEventListener("click", function(){addNumber("+");});
@@ -12,15 +16,19 @@ document.getElementById("dot").addEventListener("click", function(){addNumber(".
 document.getElementById("power").addEventListener("click", function(){addNumber("**");});
 document.getElementById("equal").addEventListener("click", function(){calc(display.innerHTML);});
 
+window.addEventListener("keydown", function(event) {addNumber(event.key);}); //doesn't support non-qwerty i think
+
 for (let i = 0; i <= 9; i++) {
 	button[i] = document.getElementById([i]);
 	button[i].addEventListener("click", function(){
-		addNumber(i);
+		addNumber(i + ""); //this can't possibly work out well
 	});
 }
 
 function addNumber(number){
-	console.log(prevNum);
+	if (number == "=") {
+		number = "+";
+	}
 	if (isNaN(prevNum) && number == "+") {
 		return;
 	} else if (isNaN(prevNum) && number == "-") {
@@ -32,13 +40,24 @@ function addNumber(number){
 	} else 	if (isNaN(prevNum) && number == ".") {
 		return;
 	} else 	if (isNaN(prevNum) && number == "**") {
+		return; //could be shortened?
+	}
+	if (!allowedKeys.includes(number)) {
+		return;
+	}
+	if (number == "Backspace") {
+		delNumber(display.innerHTML);
+		return;
+	}
+	if (number == "Enter") {
+		calc(display.innerHTML);
 		return;
 	}
 	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0){
 		return;
 	}
 	prevNum = number;
-	console.log(prevNum);
+	console.log(number);
 	display.innerHTML += number;
 }
 
