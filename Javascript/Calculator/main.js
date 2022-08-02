@@ -6,21 +6,21 @@ let button = [];
 let prevNum;
 //Could be better
 //I'm changing this trust me
-document.getElementById("delete").addEventListener("click", function(){delNumber(display.innerHTML);});
-document.getElementById("deleteall").addEventListener("click", function(){delNumber(display.innerHTML, true);});
-document.getElementById("plus").addEventListener("click", function(){addNumber("+");});
-document.getElementById("minus").addEventListener("click", function(){addNumber("-");});
-document.getElementById("divide").addEventListener("click", function(){addNumber("/");});
-document.getElementById("multiply").addEventListener("click", function(){addNumber("*");});
-document.getElementById("dot").addEventListener("click", function(){addNumber(".");});
-document.getElementById("power").addEventListener("click", function(){addNumber("**");});
-document.getElementById("equal").addEventListener("click", function(){calc(display.innerHTML);});
+document.getElementById("delete").addEventListener("click", () => {delNumber(display.innerHTML);});
+document.getElementById("deleteall").addEventListener("click", () => {delNumber(display.innerHTML, true);});
+document.getElementById("plus").addEventListener("click", () => {addNumber("+");});
+document.getElementById("minus").addEventListener("click", () => {addNumber("-");});
+document.getElementById("divide").addEventListener("click", () => {addNumber("/");});
+document.getElementById("multiply").addEventListener("click", () => {addNumber("*");});
+document.getElementById("dot").addEventListener("click", () => {addNumber(".");});
+document.getElementById("power").addEventListener("click", () => {addNumber("**");});
+document.getElementById("equal").addEventListener("click", () => {calc(display.innerHTML);});
 
-window.addEventListener("keydown", function(event) {addNumber(event.key);}); //doesn't support non-qwerty i think
+window.addEventListener("keydown", (event) => {addNumber(event.key);}); //doesn't support non-qwerty i think
 
 for (let i = 0; i <= 9; i++) {
 	button[i] = document.getElementById([i]);
-	button[i].addEventListener("click", function(){
+	button[i].addEventListener("click", () => {
 		addNumber(i + ""); //this can't possibly work out well
 	});
 }
