@@ -1,5 +1,9 @@
-var allowedKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Backspace", "+", "-",
-	"*", "/", "=", "."];
+let allowedKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Backspace", "+", "-",
+	"*", "/", "=", ".", "(", ")"];
+
+let noEnd = ["+", "-", "*", "/", "("];
+
+let noDupe = ["+", "-", "*", "/", "."];
 
 let display = document.getElementById("display");
 let button = [];
@@ -8,6 +12,8 @@ let prevNum;
 //I'm changing this trust me
 document.getElementById("delete").addEventListener("click", () => {delNumber(display.innerHTML);});
 document.getElementById("deleteall").addEventListener("click", () => {delNumber(display.innerHTML, true);});
+document.getElementById("lpara").addEventListener("click", () => {addNumber("(");});
+document.getElementById("rpara").addEventListener("click", () => {addNumber(")");});
 document.getElementById("plus").addEventListener("click", () => {addNumber("+");});
 document.getElementById("minus").addEventListener("click", () => {addNumber("-");});
 document.getElementById("divide").addEventListener("click", () => {addNumber("/");});
@@ -26,21 +32,15 @@ for (let i = 0; i <= 9; i++) {
 }
 
 function addNumber(number){
+	console.log(prevNum);
 	if (number == "=") {
 		number = "+";
 	}
-	if (isNaN(prevNum) && number == "+") {
+	if (noDupe.includes(number) && display.innerHTML.length == 0){
 		return;
-	} else if (isNaN(prevNum) && number == "-") {
+	}
+	if (noDupe.includes(number) && noDupe.includes(prevNum)) {
 		return;
-	} else 	if (isNaN(prevNum) && number == "*") {
-		return;
-	} else 	if (isNaN(prevNum) && number == "/") {
-		return;
-	} else 	if (isNaN(prevNum) && number == ".") {
-		return;
-	} else 	if (isNaN(prevNum) && number == "**") {
-		return; //could be shortened?
 	}
 	if (!allowedKeys.includes(number)) {
 		return;
@@ -51,9 +51,6 @@ function addNumber(number){
 	}
 	if (number == "Enter") {
 		calc(display.innerHTML);
-		return;
-	}
-	if (isNaN(number) && display.innerHTML.length == 1 && display.innerHTML == 0){
 		return;
 	}
 	prevNum = number;
@@ -72,10 +69,17 @@ function delNumber(number, deleteall){
 }
 
 function calc(expression){
+	let lastNum = expression.slice(expression.length - 1);
+	console.log(lastNum);
+	if(noEnd.includes(lastNum)) {
+		display.innerHTML = "Error!";
+		return;
+	}
 	if(expression == ""){
 		console.log("expression is empty");
 		return;
 	}
+	console.log("expression =", expression);
 	let result = eval(expression); //Replace eval()
 	console.log(result);
 	display.innerHTML = result;
