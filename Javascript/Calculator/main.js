@@ -1,5 +1,5 @@
 let allowedKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Backspace", "+", "-",
-	"*", "/", "=", ".", "(", ")"];
+	"*", "/", "=", ".", "(", ")", "Math.sqrt("];
 
 let noEnd = ["+", "-", "*", "/", "("];
 
@@ -20,6 +20,7 @@ document.getElementById("divide").addEventListener("click", () => {addNumber("/"
 document.getElementById("multiply").addEventListener("click", () => {addNumber("*");});
 document.getElementById("dot").addEventListener("click", () => {addNumber(".");});
 document.getElementById("power").addEventListener("click", () => {addNumber("**");});
+document.getElementById("sroot").addEventListener("click", () => {addNumber("Math.sqrt(");}); //this is horrifying, also doesn't work
 document.getElementById("equal").addEventListener("click", () => {calc(display.innerHTML);});
 
 window.addEventListener("keydown", (event) => {addNumber(event.key);}); //doesn't support non-qwerty i think
@@ -32,6 +33,7 @@ for (let i = 0; i <= 9; i++) {
 }
 
 function addNumber(number){
+	console.log(number);
 	console.log(prevNum);
 	if (number == "=") {
 		number = "+";
@@ -40,7 +42,7 @@ function addNumber(number){
 		return;
 	}
 	if (noDupe.includes(number) && noDupe.includes(prevNum)) {
-		return;
+		return; //returns when you delete a noDupe element and try to input another one
 	}
 	if (!allowedKeys.includes(number)) {
 		return;
@@ -63,7 +65,6 @@ function delNumber(number, deleteall){
 		display.innerHTML = "";
 		return;
 	}
-	number = number.toString();
 	number = number.slice(0, -1);
 	display.innerHTML = number;
 }
@@ -72,9 +73,9 @@ function calc(expression){
 	let lastNum = expression.slice(expression.length - 1);
 	console.log(lastNum);
 	if(noEnd.includes(lastNum)) {
-		display.innerHTML = "Error!";
+		document.getElementById("errorbox").innerHTML = "Error!";
 		return;
-	}
+	} else document.getElementById("errorbox").innerHTML = "";
 	if(expression == ""){
 		console.log("expression is empty");
 		return;
