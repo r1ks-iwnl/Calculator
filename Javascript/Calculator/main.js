@@ -20,7 +20,7 @@ document.getElementById("divide").addEventListener("click", () => {addNumber("/"
 document.getElementById("multiply").addEventListener("click", () => {addNumber("*");});
 document.getElementById("dot").addEventListener("click", () => {addNumber(".");});
 document.getElementById("power").addEventListener("click", () => {addNumber("**");});
-document.getElementById("sroot").addEventListener("click", () => {addNumber("Math.sqrt(");}); //this is horrifying, also doesn't work
+document.getElementById("sroot").addEventListener("click", () => {addNumber("Math.sqrt(");}); //this is horrifying
 document.getElementById("equal").addEventListener("click", () => {calc(display.innerHTML);});
 
 window.addEventListener("keydown", (event) => {addNumber(event.key);}); //doesn't support non-qwerty i think
@@ -33,12 +33,11 @@ for (let i = 0; i <= 9; i++) {
 }
 
 function addNumber(number){
-	console.log(number);
 	console.log(prevNum);
 	if (number == "=") {
 		number = "+";
 	}
-	if (noDupe.includes(number) && display.innerHTML.length == 0){
+	if (noDupe.includes(number) && display.innerHTML.length == 0 && number != "-"){
 		return;
 	}
 	if (noDupe.includes(number) && noDupe.includes(prevNum)) {
@@ -81,7 +80,7 @@ function calc(expression){
 		return;
 	}
 	console.log("expression =", expression);
-	let result = eval(expression); //Replace eval()
+	let result = Function(`"use strict"; return (${expression});`)();
 	console.log(result);
 	display.innerHTML = result;
 }
