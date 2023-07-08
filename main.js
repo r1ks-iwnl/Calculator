@@ -1,9 +1,9 @@
 let allowedKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Backspace", "+", "-",
-	"*", "**", "/", "=", ".", "(", ")", "Math.sqrt("];
+	"*", "**", "/", "=", ".", "^", "(", ")", "Math.sqrt("];
 
 let noEnd = ["+", "-", "*", "**", "/", "("];
 
-let noDupe = ["+", "-", "*", "**", "/", "."];
+let noDupe = ["+", "-", "*", "/", ".", "^"];
 
 let display = document.getElementById("display");
 let button = [];
@@ -19,7 +19,7 @@ document.getElementById("minus").addEventListener("click", () => {addNumber("-")
 document.getElementById("divide").addEventListener("click", () => {addNumber("/");});
 document.getElementById("multiply").addEventListener("click", () => {addNumber("*");});
 document.getElementById("dot").addEventListener("click", () => {addNumber(".");});
-document.getElementById("power").addEventListener("click", () => {addNumber("**");});
+document.getElementById("power").addEventListener("click", () => {addNumber("^");});
 document.getElementById("sroot").addEventListener("click", () => {addNumber("Math.sqrt(");}); //this is horrifying
 document.getElementById("equal").addEventListener("click", () => {calc(display.innerHTML);});
 
@@ -78,6 +78,7 @@ function calc(expression){
 		console.log("expression is empty");
 		return;
 	}
+	expression = expression.replace("^", "**");
 	console.log("expression =", expression);
 	let result = Function(`"use strict"; return (${expression});`)();
 	console.log(result);
