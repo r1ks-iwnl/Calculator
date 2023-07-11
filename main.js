@@ -28,7 +28,8 @@ window.addEventListener("keydown", (event) => {addNumber(event.key);}); //doesn'
 for (let i = 0; i <= 9; i++) {
 	button[i] = document.getElementById([i]);
 	button[i].addEventListener("click", () => {
-		addNumber(i + ""); //this can't possibly work out well
+		addNumber(`${i}`); //TODO: Fix enter triggering this
+		console.log(button[i]);
 	});
 }
 
@@ -50,11 +51,10 @@ function addNumber(number){
 		return;
 	}
 	if (number == "Enter") {
-		calc(display.innerHTML);
+		//calc(display.innerHTML);
 		return;
 	}
 	prevNum = number;
-	console.log(number);
 	display.innerHTML += number;
 }
 
@@ -69,7 +69,6 @@ function delNumber(number, deleteall){
 
 function calc(expression){
 	let lastNum = expression.slice(expression.length - 1);
-	console.log(lastNum);
 	if(noEnd.includes(lastNum)) {
 		document.getElementById("errorbox").innerHTML = "Error!";
 		return;
