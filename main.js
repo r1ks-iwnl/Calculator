@@ -40,8 +40,8 @@ function addNumber(number){
 	if (noDupe.includes(number) && display.innerHTML.length == 0 && number != "-"){
 		return;
 	}
-	if (noDupe.includes(number) && noDupe.includes(prevNum)) {
-		return; //returns when you delete a noDupe element and try to input another one
+	if (noDupe.includes(number) && noDupe.includes(display.innerHTML.slice(display.innerHTML.length - 1))) {
+		return;
 	}
 	if (!allowedKeys.includes(number)) {
 		return;
