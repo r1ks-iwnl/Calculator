@@ -23,13 +23,13 @@ document.getElementById("power").addEventListener("click", () => {addNumber("^")
 document.getElementById("sroot").addEventListener("click", () => {addNumber("Math.sqrt(");}); //this is horrifying
 document.getElementById("equal").addEventListener("click", () => {calc(display.innerHTML);});
 
-window.addEventListener("keydown", (event) => {addNumber(event.key);}); //doesn't support non-qwerty i think
+window.addEventListener("keydown", (event) => {addNumber(event.key); //doesn't support non-qwerty i think
+	event.preventDefault();}); //Stops enter from triggering "click"
 
 for (let i = 0; i <= 9; i++) {
 	button[i] = document.getElementById([i]);
 	button[i].addEventListener("click", () => {
-		addNumber(`${i}`); //TODO: Fix enter triggering this
-		console.log(button[i]);
+		addNumber(`${i}`);
 	});
 }
 
@@ -51,7 +51,7 @@ function addNumber(number){
 		return;
 	}
 	if (number == "Enter") {
-		//calc(display.innerHTML);
+		calc(display.innerHTML);
 		return;
 	}
 	prevNum = number;
