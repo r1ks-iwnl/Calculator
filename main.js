@@ -54,6 +54,9 @@ function addNumber(number){
 		calc(display.innerHTML);
 		return;
 	}
+	if (document.getElementById("errorbox").innerHTML = "Error!") {
+		document.getElementById("errorbox").innerHTML = "";
+	}
 	prevNum = number;
 	display.innerHTML += number;
 }
@@ -61,7 +64,13 @@ function addNumber(number){
 function delNumber(number, deleteall){
 	if(deleteall){
 		display.innerHTML = "";
+		if (document.getElementById("errorbox").innerHTML = "Error!") {
+			document.getElementById("errorbox").innerHTML = "";
+		}
 		return;
+	}
+	if (document.getElementById("errorbox").innerHTML = "Error!") {
+		document.getElementById("errorbox").innerHTML = "";
 	}
 	number = number.slice(0, -1);
 	display.innerHTML = number;
