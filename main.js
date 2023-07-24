@@ -1,5 +1,5 @@
 let allowedKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "Enter", "Backspace", "+", "-",
-	"*", "**", "/", "=", ".", "^", "(", ")", "Math.sqrt("];
+	"*", "**", "/", "=", ".", "^", "(", ")", "√("];
 
 let noEnd = ["+", "-", "*", "**", "/", "("];
 
@@ -20,7 +20,7 @@ document.getElementById("divide").addEventListener("click", () => {addNumber("/"
 document.getElementById("multiply").addEventListener("click", () => {addNumber("*");});
 document.getElementById("dot").addEventListener("click", () => {addNumber(".");});
 document.getElementById("power").addEventListener("click", () => {addNumber("^");});
-document.getElementById("sroot").addEventListener("click", () => {addNumber("Math.sqrt(");}); //this is horrifying
+document.getElementById("sroot").addEventListener("click", () => {addNumber("√(");});
 document.getElementById("equal").addEventListener("click", () => {calc(display.innerHTML);});
 
 window.addEventListener("keydown", (event) => {addNumber(event.key); //doesn't support non-qwerty i think
@@ -87,6 +87,7 @@ function calc(expression){
 		return;
 	}
 	expression = expression.replace("^", "**");
+	expression = expression.replace("√(", "Math.sqrt(");
 	console.log("expression =", expression);
 	let result = Function(`"use strict"; return (${expression});`)();
 	console.log(result);
