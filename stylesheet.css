@@ -38,6 +38,10 @@ html, body {
 	grid-row: 5;
 }
 
+.row6 {
+	grid-row: 6;
+}
+
 #display {
 	height:50px;
 	width:300px;
