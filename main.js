@@ -23,8 +23,10 @@ document.getElementById("power").addEventListener("click", () => {addNumber("^")
 document.getElementById("sroot").addEventListener("click", () => {addNumber("√(");});
 document.getElementById("equal").addEventListener("click", () => {calc(display.innerHTML);});
 
-window.addEventListener("keydown", (event) => {addNumber(event.key); //doesn't support non-qwerty i think
-	event.preventDefault();}); //Stops enter from triggering "click"
+window.addEventListener("keydown", (event) => {
+	event.preventDefault(); //stops enter from triggering "click"
+	addNumber(event.key); //doesn't support non-qwerty i think
+});
 
 for (let i = 0; i <= 9; i++) {
 	button[i] = document.getElementById([i]);
