@@ -80,6 +80,14 @@ function delNumber(number, deleteall){
 
 function calc(expression){
 	let lastNum = expression.slice(expression.length - 1);
+	if(expression.includes("(") && expression.slice(0, 1) != "("){
+		let lpara = expression.indexOf("(");
+		expression = expression.slice(0, lpara) + "*" + expression.slice(lpara);
+	}
+	if(expression.includes(")") && lastNum != ")"){
+		let rpara = expression.indexOf(")");
+		expression = expression.slice(0, rpara + 1) + "*" + expression.slice(rpara + 1);
+	}
 	if(noEnd.includes(lastNum)) {
 		document.getElementById("errorbox").innerHTML = "Error!";
 		return;
