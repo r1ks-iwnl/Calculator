@@ -80,7 +80,8 @@ function delNumber(number, deleteall){
 
 function calc(expression){
 	let lastNum = expression.slice(expression.length - 1);
-	if(expression.includes("(") && expression.slice(0, 1) != "("){
+	if(expression.includes("(") && expression.slice(0, 1) != "(" 
+		&& expression.charAt(expression.indexOf("(") - 1) != "√"){
 		let lpara = expression.indexOf("(");
 		expression = expression.slice(0, lpara) + "*" + expression.slice(lpara);
 	}
@@ -96,8 +97,8 @@ function calc(expression){
 		console.log("expression is empty");
 		return;
 	}
-	expression = expression.replace("^", "**");
-	expression = expression.replace("√(", "Math.sqrt(");
+	expression = expression.replaceAll("^", "**");
+	expression = expression.replaceAll("√(", "Math.sqrt(");
 	console.log("expression =", expression);
 	let result = Function(`"use strict"; return (${expression});`)();
 	console.log(result);
